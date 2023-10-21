@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
     //clear all input
     fun onClear(view: View){
         tvInput?.text = ""
+        lastNumeric=false
     }
 
     //add decimal point
