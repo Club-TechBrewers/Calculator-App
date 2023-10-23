@@ -2,6 +2,7 @@ package com.example.calculator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity() {
     //clear all input
     fun onClear(view: View){
         tvInput?.text = ""
+        lastNumeric=false
     }
 
     //add decimal point
@@ -70,7 +72,9 @@ class MainActivity : AppCompatActivity() {
     //return true if any operator is added further for calculations as input
     private fun isOperatorAdded(value : String): Boolean{
         return if(value.startsWith("-")){
-            false
+            Log.v("starts with value :","-")
+            Toast.makeText(this,"-ve number involved. Clear to continue",Toast.LENGTH_LONG).show()
+            true
         }else{
             value.contains("/")
                     || value.contains("*")
