@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private var tvInput: TextView? = null
     var lastNumeric: Boolean = false
     var lastDot: Boolean = false
+    var lastEqual: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +33,9 @@ class MainActivity : AppCompatActivity() {
     //add digit in the input from button as view
     fun onDigit(view: View){
         //Toast.makeText(this, "button Clicked", Toast.LENGTH_LONG).show()
+        if(lastEqual) {
+            onClear(view)
+        }
         tvInput?.append((view as Button).text)
         lastNumeric = true
         lastDot = false
@@ -49,6 +53,7 @@ class MainActivity : AppCompatActivity() {
             tvInput?.append(".")
             lastNumeric = false
             lastDot = true
+            lastEqual = false
         }
     }
 
@@ -64,6 +69,7 @@ class MainActivity : AppCompatActivity() {
                 tvInput?.append((view as Button).text)
                 lastNumeric = false
                 lastDot = false
+                lastEqual= false
             }
         }
     }
@@ -87,6 +93,7 @@ class MainActivity : AppCompatActivity() {
         if(lastNumeric){
             var tvValue = tvInput?.text.toString()
             var prefix = ""
+            lastEqual = true
 
             try{
                 if(tvValue.startsWith("-")){
