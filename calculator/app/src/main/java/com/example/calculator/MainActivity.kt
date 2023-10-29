@@ -38,13 +38,14 @@ class MainActivity : AppCompatActivity() {
         }
         tvInput?.append((view as Button).text)
         lastNumeric = true
-        lastDot = false
     }
 
     //clear all input
     fun onClear(view: View){
         tvInput?.text = ""
         lastNumeric=false
+        lastDot=false
+        lastEqual=false
     }
 
     //add decimal point
